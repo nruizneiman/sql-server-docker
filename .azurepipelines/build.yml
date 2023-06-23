@@ -1,0 +1,29 @@
+trigger:
+  branches:
+    include:
+      - main
+
+jobs:
+- job: BuildAndPush
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: Docker@2
+    displayName: Build image
+    inputs:
+      repository: 'sqlserver-2019-demo'
+      dockerfile: '**/Dockerfile'
+      buildContext: '.'
+      containerRegistry: 'yourContainerRegistry'
+      tags: |
+        $(Build.BuildId)
+        latest
+
+  - task: Docker@2
+    displayName: Push image
+    inputs:
+      repository: 'sqlserver-2019-demo'
+      containerRegistry: 'yourContainerRegistry'
+      tags: |
+        $(Build.BuildId)
+        latest
