@@ -16,6 +16,7 @@ RUN /opt/mssql/bin/sqlservr & sleep 15 \
 RUN /opt/mssql/bin/sqlservr & sleep 15 \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Init/02-Pre-Data.sql \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Tables-With-Inserts/dbo.Products.Table.sql \
+    && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Tables-With-Inserts/dbo.Categories.Table.sql \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/00-Additional-Data.sql \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Init/03-Post-Data.sql
 
