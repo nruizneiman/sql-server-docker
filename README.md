@@ -1,4 +1,5 @@
 # sql-server-docker
+[![Build and publish a Docker image](https://github.com/nruizneiman/sql-server-docker/actions/workflows/docker-image.yml/badge.svg)](https://github.com/nruizneiman/sql-server-docker/actions/workflows/docker-image.yml)
 
 ## Overview
 
