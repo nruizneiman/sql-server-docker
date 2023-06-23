@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/mssql/server:2019-latest
 
 # Configure environment variables
 ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD=yourStr0ngP4$$word!
+ENV SA_PASSWORD=yourStr0ngP4ssword!
 
 # Copy SQL scripts to the container
 COPY ./scripts/ /scripts/
@@ -15,8 +15,8 @@ RUN /opt/mssql/bin/sqlservr & sleep 15 \
 # Execute SQL scripts (DATA)
 RUN /opt/mssql/bin/sqlservr & sleep 15 \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Init/02-Pre-Data.sql \
-    && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Tables-With-Inserts/dbo.Products.Table.sql \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Tables-With-Inserts/dbo.Categories.Table.sql \
+    && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Tables-With-Inserts/dbo.Products.Table.sql \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/00-Additional-Data.sql \
     && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$SA_PASSWORD" -d DemoDB -i /scripts/Init/03-Post-Data.sql
 
