@@ -23,10 +23,14 @@ The script is prepared to run SQL scripts in a certain order:
 ## How to build and run
 The following commands are useful to build the image and run a new container locally by using Docker, they can be adapted as needed to satisfy your needs.
 ### Build
-`docker build -t sql-server-local .`
+```shell
+docker build -t sql-server-local .
+```
 
 ### Run
-`docker run -d --name sql-server-local -p 1434:1433 sql-server-local`
+```shell
+docker run -d --name sql-server-local -p 1434:1433 sql-server-local
+```
 
 ## CI/CD
 As part of a CI/CD process, it is important to automate the process of buidling and pushing a new image each time a new change is sent to the `main` branch. As an example, you will find some useful definitions that might be helpful when implementing this.
